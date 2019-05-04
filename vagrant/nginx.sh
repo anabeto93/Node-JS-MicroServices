@@ -33,6 +33,8 @@ then
 	# only run once
 	touch /var/www/project/nginxnginx
 
+	sudo cp /var/www/project/vagrant/certs/dhparam.pem /etc/nginx/certs/dhparam.pem
+
 	sudo cp /var/www/project/vagrant/certs/books.node.app.crt /etc/nginx/certs/books.node.app.crt
 	sudo cp /var/www/project/vagrant/certs/books.node.app.key /etc/nginx/private/books.node.app.key
 
@@ -45,6 +47,9 @@ then
 else
 
 	echo ">>> nginx already setup..."
+
+	sudo cp /var/www/project/vagrant/certs/dhparam.pem /etc/nginx/certs/dhparam.pem
+	
 	sudo cp /var/www/project/vagrant/certs/books.node.app.crt /etc/nginx/certs/books.node.app.crt
 	sudo cp /var/www/project/vagrant/certs/books.node.app.key /etc/nginx/private/books.node.app.key
 
