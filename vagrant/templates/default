@@ -43,12 +43,11 @@ server {
 
 server {
     listen 80;
-    listen [::]:80 ipv6only=on;
 
-    root /var/www/project;
+    root /var/www/project/customers;
     index index.php index.html index.htm;
 
-    server_name customers.node.app
+    server_name customers.node.app;
 
     location / {
         proxy_pass http://localhost:8002;
@@ -68,12 +67,11 @@ server {
 
 server {
     listen 80;
-    listen [::]:80 ipv6only=on;
 
     root /var/www/project/orders;
     index index.php index.html index.htm;
 
-    server_name orders.node.app
+    server_name orders.node.app;
 
     location / {
         proxy_pass http://localhost:8003;
