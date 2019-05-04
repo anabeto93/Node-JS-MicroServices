@@ -21,3 +21,14 @@ Go into each directory or microservice and run `yarn` or `npm install`.
 
 For those using Windows or WSL, it is preferrable you run your npm install outside for the VM in case you choose to go with Vagrant VM.
 
+Edit your `/etc/hosts` file, or for those on windows, this is found at `c:\windows\System32\drivers\etc\hosts` which you require administrator access to be able to edit. Include the line below
+```
+192.168.66.10 node.app
+```
+You can include the below lines too if you want to access the individual microservices
+```
+192.168.66.10 node.app
+192.168.66.10 customers.node.app
+192.168.66.10 orders.node.app
+192.168.66.10 books.node.app
+```
