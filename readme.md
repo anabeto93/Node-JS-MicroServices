@@ -32,3 +32,10 @@ You can include the below lines too if you want to access the individual microse
 192.168.66.10 orders.node.app
 192.168.66.10 books.node.app
 ```
+You can access the various services simply by visiting the links in your browser, such as
+```
+https://node.app
+https://customers.node.app
+https://books.node.app
+https://orders.node.app
+```
