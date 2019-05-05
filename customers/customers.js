@@ -34,17 +34,19 @@ app.post('/customers', (req, res) => {
 
     book.save().then(() => {
         console.log("New customer created!")
+
+        data = {
+            status: 'created',
+            code: 201,
+            data: newCustomer
+        }
+    
+        res.status(201).send(data)
     }).catch((err) => {
         throw err;
+
+        res.send(err)
     })
-
-    data = {
-        status: 'created',
-        code: 201,
-        data: newCustomer
-    }
-
-    res.status(201).send(data)
 })
 
 app.listen(8002, () => {
