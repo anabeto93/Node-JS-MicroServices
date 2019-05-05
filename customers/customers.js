@@ -71,13 +71,39 @@ app.get('/customer/:id', (req, res) => {
 
     Customer.findById(id).then( (customer) => {
         console.log('Customer found')
-        let data = {
+        let data = {}
+
+        if (!customer) {
+            data = {
+                status: 'not found',
+                code: 404,
+            }
+            res.status(404).send('Invalid customer Id')
+        }
+
+        data = {
             status: 'found',
             code: 200,
             data: customer
         }
 
         res.send(data)
+
+    } ).catch(err => {
+        if (err) {
+            res.send(err)
+            throw err
+        }
+    })
+})
+
+//Delete specific customer by id
+app.delete('/customer/:id', (req, res) => {
+    let id = req.params.id
+    console.log('Delete customer with Id', id)
+
+    Customer.findOneAndRemove(id).then( () => {
+        res.send('Customer Removed')
     } ).catch(err => {
         if (err) {
             res.send(err)
