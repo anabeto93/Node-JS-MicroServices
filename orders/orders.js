@@ -28,8 +28,8 @@ app.post('/orders', (req, res) => {
     console.log('About creating a new order', req.body)
 
     let newOrder = {
-        CustomerId: req.body.customer_id,
-        BookId: req.body.book_id,
+        CustomerId:  mongoose.Types.ObjectId(req.body.customer_id),
+        BookId:  mongoose.Types.ObjectId(req.body.book_id),
         dateBorrowed: req.body.date_borrowed,
         dateReturned: req.body.return_date
     }
@@ -39,15 +39,15 @@ app.post('/orders', (req, res) => {
     let order = new Order(newOrder)
 
     order.save().then(() => {
-        console.log("New order created!")
+        console.log("New order created and stored!")
 
         data = {
             status: 'created',
             code: 201,
-            data: newCustomer
+            data: newOrder
         }
     
-        res.status(201).send(data)
+        res.status(201).json(data)
     }).catch((err) => {
         if (err) {
             res.send(err)
