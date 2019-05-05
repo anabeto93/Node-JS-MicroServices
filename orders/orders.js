@@ -23,6 +23,13 @@ app.get('/', (req, res) => {
     res.send('Orders Service endpoint!')
 })
 
+//create a new order
+app.post('/books', (req, res) => {
+    console.log('About creating a new order', req.body)
+
+    
+})
+
 app.listen(8003, () => {
     console.log('Up and running - Orders service')
 })
