@@ -51,6 +51,35 @@ app.post('/books', (req, res) => {
     res.status(201).send(data)
 })
 
+//Get books
+app.get('/books', (req, res) => {
+    Book.find().then( (books) => {
+        console.log(books)
+
+        res.send(books)
+    } ).catch(err => {
+        if (err) {
+            throw err
+        }
+    })
+
+    //res.send(books)
+})
+
+app.get('/book/:id', (req, res) => {
+    let id = req.params.id
+
+    Book.findById(id).then( (book) => {
+        if(!book) {
+            res.status(404).send('Book not found.')
+        }
+
+        res.send(book)
+    } ).catch( (err) => {
+        if(err) throw err
+    } )
+})
+
 app.listen(8001, () => {
     console.log("Up and running! -- This is our Books service");
 })
