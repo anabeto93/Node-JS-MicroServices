@@ -24,10 +24,49 @@ app.get('/', (req, res) => {
 })
 
 //create a new order
-app.post('/books', (req, res) => {
+app.post('/orders', (req, res) => {
     console.log('About creating a new order', req.body)
 
+    let newOrder = {
+        CustomerId: req.body.customer_id,
+        BookId: req.body.book_id,
+        dateBorrowed: req.body.date_borrowed,
+        dateReturned: req.body.return_date
+    }
 
+    let order = new Order(newOrder)
+
+    order.save().then(() => {
+        console.log("New order created!")
+
+        data = {
+            status: 'created',
+            code: 201,
+            data: newCustomer
+        }
+    
+        res.status(201).send(data)
+    }).catch((err) => {
+        if (err) {
+            res.send(err)
+            throw err
+        }
+        
+    })
+})
+
+//Get all orders
+app.get('/orders', (req, res) => {
+    console.log('Getting all orders')
+
+    Order.find().then( (orders) => {
+        res.json(orders)
+    } ).catch(err => {
+        if (err) {
+            res.send(err)
+            throw err
+        }
+    })
 })
 
 app.listen(8003, () => {
