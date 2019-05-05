@@ -25,7 +25,7 @@ then
 	apt-get install -y nginx
 
 	# update the default vhost
-	cat /var/www/project/vagrant/templates/default > /etc/nginx/sites-available/default
+	sudo cp /var/www/project/vagrant/templates/default /etc/nginx/sites-available/default
 
 	# restart nginx so it can pick up the new configuration
 	service nginx restart
@@ -49,7 +49,7 @@ else
 	echo ">>> nginx already setup..."
 
 	sudo cp /var/www/project/vagrant/certs/dhparam.pem /etc/nginx/certs/dhparam.pem
-	
+
 	sudo cp /var/www/project/vagrant/certs/books.node.app.crt /etc/nginx/certs/books.node.app.crt
 	sudo cp /var/www/project/vagrant/certs/books.node.app.key /etc/nginx/private/books.node.app.key
 

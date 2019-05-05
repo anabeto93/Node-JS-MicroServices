@@ -36,7 +36,6 @@ Vagrant.configure("2") do |config|
       #start the various services
       sudo service mongod start
       sudo service redis start
-      #link the various node modules directories
     SHELL
 
     # configuration step 3: nginx

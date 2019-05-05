@@ -39,3 +39,7 @@ https://customers.node.app
 https://books.node.app
 https://orders.node.app
 ```
+
+The root certifcates have been added and found at vagrant/certs which you can add to your browser in order to access these services over SSL/TLS in your dev environment without problems.
+
+
