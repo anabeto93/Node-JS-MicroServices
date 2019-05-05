@@ -85,7 +85,7 @@ app.delete('/book/:id', (req, res) => {
     let id = req.params.id
     console.log('Request to delete book by id ',id)
 
-    Book.findOneAndRemove(id).then( () => {
+    Book.findByIdAndRemove(id).then( () => {
         res.send('Book deleted')
     } ).catch( (err) => {
         if (err) throw err
