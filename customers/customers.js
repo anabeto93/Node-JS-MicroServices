@@ -51,6 +51,19 @@ app.post('/customers', (req, res) => {
     })
 })
 
+app.get('/customers', (req, res) => {
+    console.log('Getting all customers')
+
+    Customer.find().then( (customers) => {
+        res.json(customers)
+    } ).catch(err => {
+        if (err) {
+            res.send(err)
+            throw err
+        }
+    })
+})
+
 app.listen(8002, () => {
     console.log('Up and running - Customers service')
 })
