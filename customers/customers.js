@@ -22,6 +22,31 @@ app.get('/', (req, res) => {
     res.send('Customers Service endpoint!')
 })
 
+app.post('/customers', (req, res) => {
+    console.log('The request body received', req.body)
+    let newCustomer = {
+        name: req.body.name,
+        age: req.body.age,
+        address: req.body.address,
+    }
+
+    let book = new Customer(newCustomer);
+
+    book.save().then(() => {
+        console.log("New customer created!")
+    }).catch((err) => {
+        throw err;
+    })
+
+    data = {
+        status: 'created',
+        code: 201,
+        data: newCustomer
+    }
+
+    res.status(201).send(data)
+})
+
 app.listen(8002, () => {
     console.log('Up and running - Customers service')
 })
