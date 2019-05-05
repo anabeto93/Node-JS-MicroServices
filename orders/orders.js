@@ -78,13 +78,28 @@ app.get('/order/:id', (req, res) => {
     console.log('Findinga book by id ',id)
 
     Order.findById(id).then( (order) => {
+        let orderObj = {}
         axios.get('http://localhost:8002/customer/'+ order.CustomerId).then(
             (response) => {
-                console.log(response)
+                console.log('Customer found', response.data)
+                let customer = response.data
+                orderObj['customerName'] = customer.name
+
+                //feeling lazy at this point onwards
+                axios.get('http://localhost:8001/book/'+ order.BookId).then(
+                    (response) => {
+                        console.log('Book found',response.data)
+
+                        let book = response.data
+                        orderObj['bookTitle'] = book.title
+
+                        res.status(200).send(orderObj)
+                    }
+                )
             }
         )
 
-        res.send('Test Response')
+        //res.send('Test Response')
     } ).catch(err => {
         if (err) {
             res.send(err)
