@@ -82,7 +82,7 @@ app.get('/order/:id', (req, res) => {
         axios.get('http://localhost:8002/customer/'+ order.CustomerId).then(
             (response) => {
                 console.log('Customer found', response.data)
-                let customer = response.data
+                let customer = response.data.data
                 orderObj['customerName'] = customer.name
 
                 //feeling lazy at this point onwards
