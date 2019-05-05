@@ -1,5 +1,6 @@
 const express = require('express')
 const app = express()
+const axios = require('axios')
 
 const bodyParser = require('body-parser')
 app.use(bodyParser.json())
@@ -63,6 +64,27 @@ app.get('/orders', (req, res) => {
 
     Order.find().then( (orders) => {
         res.json(orders)
+    } ).catch(err => {
+        if (err) {
+            res.send(err)
+            throw err
+        }
+    })
+})
+
+app.get('/order/:id', (req, res) => {
+    let id = req.params.id
+
+    console.log('Findinga book by id ',id)
+
+    Order.findById(id).then( (order) => {
+        axios.get('http://localhost:8002/customer/'+ order.CustomerId).then(
+            (response) => {
+                console.log(response)
+            }
+        )
+
+        res.send('Test Response')
     } ).catch(err => {
         if (err) {
             res.send(err)
