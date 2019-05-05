@@ -64,6 +64,28 @@ app.get('/customers', (req, res) => {
     })
 })
 
+//Get specific customer by id
+app.get('/customer/:id', (req, res) => {
+    let id = req.params.id
+    console.log('Fetching customer by Id', id)
+
+    Customer.findById(id).then( (customer) => {
+        console.log('Customer found')
+        let data = {
+            status: 'found',
+            code: 200,
+            data: customer
+        }
+
+        res.send(data)
+    } ).catch(err => {
+        if (err) {
+            res.send(err)
+            throw err
+        }
+    })
+})
+
 app.listen(8002, () => {
     console.log('Up and running - Customers service')
 })
