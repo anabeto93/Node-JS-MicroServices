@@ -43,9 +43,11 @@ app.post('/customers', (req, res) => {
     
         res.status(201).send(data)
     }).catch((err) => {
-        throw err;
-
-        res.send(err)
+        if (err) {
+            res.send(err)
+            throw err
+        }
+        
     })
 })
 
