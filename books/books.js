@@ -80,6 +80,10 @@ app.get('/book/:id', (req, res) => {
     } )
 })
 
+app.delete('/book/:id', (req, res) => {
+    
+})
+
 app.listen(8001, () => {
     console.log("Up and running! -- This is our Books service");
 })
