@@ -68,6 +68,7 @@ app.get('/books', (req, res) => {
 
 app.get('/book/:id', (req, res) => {
     let id = req.params.id
+    console.log('Request to get specific book by id ',id)
 
     Book.findById(id).then( (book) => {
         if(!book) {
@@ -76,12 +77,19 @@ app.get('/book/:id', (req, res) => {
 
         res.send(book)
     } ).catch( (err) => {
-        if(err) throw err
+        if (err) throw err
     } )
 })
 
 app.delete('/book/:id', (req, res) => {
-    
+    let id = req.params.id
+    console.log('Request to delete book by id ',id)
+
+    Book.findOneAndRemove(id).then( () => {
+        res.send('Book deleted')
+    } ).catch( (err) => {
+        if (err) throw err
+    } )
 })
 
 app.listen(8001, () => {
