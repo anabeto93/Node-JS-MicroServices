@@ -102,7 +102,7 @@ app.delete('/customer/:id', (req, res) => {
     let id = req.params.id
     console.log('Delete customer with Id', id)
 
-    Customer.findOneAndRemove(id).then( () => {
+    Customer.findByIdAndRemove(id).then( () => {
         res.send('Customer Removed')
     } ).catch(err => {
         if (err) {
