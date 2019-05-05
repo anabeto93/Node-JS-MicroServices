@@ -34,6 +34,8 @@ app.post('/orders', (req, res) => {
         dateReturned: req.body.return_date
     }
 
+    console.log('new order object', newOrder)
+
     let order = new Order(newOrder)
 
     order.save().then(() => {
