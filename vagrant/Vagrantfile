@@ -34,8 +34,14 @@ Vagrant.configure("2") do |config|
       curl -sL https://deb.nodesource.com/setup_10.x | sh
       sudo apt install -y nodejs
       #start the various services
-      sudo service mongod start
-      sudo service redis start
+      sudo service mongodb start
+      sudo service redis-server start
+      #PM2 to run and Manage Node Apps
+      sudo npm install -g pm2 -y
+      #start the various services
+      pm2 start /var/www/project/books/books.js
+      pm2 start /var/www/project/books/customers.js
+      pm2 start /var/www/project/books/orders.js
     SHELL
 
     # configuration step 3: nginx
